@@ -38,8 +38,8 @@ const login = () => {
       console.log(response.data);
       if (response.data.status === true) {
         // Save user data to AsyncStorage
-        await AsyncStorage.setItem('userData', response.data.data);
-        // router.push("/home");
+        await AsyncStorage.setItem('userData',JSON.stringify(response.data.data));
+        router.push("/dashboard");
       }
 
       // Alert.alert('Signup successful!');

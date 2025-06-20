@@ -5,6 +5,7 @@ import { useRouter } from "expo-router";
 import Button from "../../components/Button";
 import Icon from "react-native-vector-icons";
 import { useState } from "react";
+import { router } from "expo-router";
 import {
   Image,
   ScrollView,

@@ -9,8 +9,6 @@ import TabBarBackground from '@/components/ui/TabBarBackground';
 import COLORS from '@/constants/Colors';
 
 export default function TabLayout() {
-  const colorScheme = useColorScheme();
-
   return (
     <Tabs
       screenOptions={{
@@ -27,9 +25,9 @@ export default function TabLayout() {
         }),
       }}>
       <Tabs.Screen
-        name="home"
+        name="dashboard"
         options={{
-          title: 'Home',
+          title: 'Dashboard',
           tabBarIcon: ({ color }) => <IconSymbol size={28} name="house.fill" color={color} />,
         }}
       />

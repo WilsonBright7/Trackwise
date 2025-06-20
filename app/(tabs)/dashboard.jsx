@@ -2,11 +2,12 @@ import COLORS from "@/constants/Colors";
 import { ScrollView, Text, Image, View, TouchableOpacity } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { StyleSheet } from "react-native";
-import styles from "../styles";
+import style from "../style";
 import { Button } from "@react-navigation/elements";
 import { router } from "expo-router";
 import { BarChart, PieChart } from "react-native-gifted-charts";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { useEffect, useState } from "react";
 
 const barData = [
   { value: 250, label: "Food", frontColor: "#0263FF" },
@@ -16,10 +17,33 @@ const barData = [
   { value: 600, label: "Saving", frontColor: "#197B01" },
 ];
 
-const Home = () => {
+const Dashboard = () => {
+
+    const [user, setUser] = useState('')
+
+
+  useEffect(() => {
+    const getDataFromStorage = async () => {
+      try {
+        const jsonValue = await AsyncStorage.getItem("userData");
+
+        if (jsonValue != null) {
+          const parsedData = JSON.parse(jsonValue);
+         setUser(parsedData)
+          console.log("Retrieved data:", parsedData);
+        } else {
+          console.log("No data found");
+        }
+      } catch (error) {
+        console.error("Error retrieving data:", error);
+      }
+    };
+    getDataFromStorage();
+  }, []);
+
   return (
     <SafeAreaView>
-      <ScrollView style={styles.container}>
+      <ScrollView style={style.container}>
         <View
           style={{
             flexDirection: "row",
@@ -45,13 +69,13 @@ const Home = () => {
               fontSize: 20,
             }}
           >
-            Good afternoon Halima!
+            Good afternoon  {user ? user?.fullname : ''}!
           </Text>
           <Text style={{ color: COLORS.white, fontFamily: "PoppinsSemi" }}>
             20 days left for this month
           </Text>
         </View>
-        <View style={styles.loginBox}>
+        <View style={style.loginBox}>
           <View
             style={{
               flexDirection: "row",
@@ -69,7 +93,7 @@ const Home = () => {
               source={require("../../assets/images/card2.png")}
             />
           </View>
-          <View style={styles.Box}>
+          <View style={style.Box}>
             <Text
               style={{
                 fontFamily: "PoppinsSemiBold",
@@ -151,7 +175,7 @@ const Home = () => {
               </Text>
             </TouchableOpacity>
           </View>
-          <View style={styles.Line}></View>
+          <View style={style.Line}></View>
           <Text
             style={{
               fontFamily: "PoppinsSemiBold",
@@ -168,4 +192,4 @@ const Home = () => {
     </SafeAreaView>
   );
 };
-export default Home;
+export default Dashboard;
