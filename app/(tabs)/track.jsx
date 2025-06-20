@@ -1,7 +1,7 @@
 import { Text } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 
-export default function TabTwoLayout() {
+const Track = () => {
   return (
     <SafeAreaView>
       <Text>Hello Track</Text>
@@ -9,3 +9,4 @@ export default function TabTwoLayout() {
    
   )
 }
+export default Track;

@@ -68,8 +68,8 @@ const signIn = () => {
   // const handleSignUp = () => {
   // Navigate to sign-up screen
 
-  const router = useRouter();
-  const navigation = useNavigation();
+//   const router = useRouter();
+//   const navigation = useNavigation();
 
   return (
     <SafeAreaView style={authStyles.mainContainer}>
