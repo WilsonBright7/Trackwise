@@ -10,4 +10,4 @@ import {Stack} from "expo-router"
     </Stack>
   );
 }
-export default AuthScreen;
+export default AuthScreens;

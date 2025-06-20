@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
         flex:1,
         marginTop:40,
         minHeight:'50%',
-        shadowOffset:{width:0, height:4},
+        
         
     },
     Box:{
@@ -86,7 +86,7 @@ const styles = StyleSheet.create({
         //flex:1,
         marginTop:5,
         minHeight:'50%',
-        shadowOffset:{width:0, height:4},
+        
     },
     Fit:{
         borderWidth:2,
