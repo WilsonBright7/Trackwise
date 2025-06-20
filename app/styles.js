@@ -45,6 +45,21 @@ const styles = StyleSheet.create({
     color: COLORS.grey,
     textAlign: 'center',
   },
+
+  sign:{
+    textAlign: "center", 
+    fontSize: 20, 
+    fontWeight:400, 
+    fontFamily:'PoppinsBold', 
+    color: COLORS.white
+  },
+  second:{
+    height:56, 
+    width:142,
+    backgroundColor:COLORS.primary, 
+    borderRadius:15,
+    justifyContent:'center'
+  }
   
 });
 

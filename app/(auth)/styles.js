@@ -33,6 +33,7 @@ const authStyles = StyleSheet.create({
   },
   logoContainer: {
     paddingHorizontal: 20,
+    marginTop:10
   },
   logo: {
     width: 116, 
@@ -59,6 +60,7 @@ const authStyles = StyleSheet.create({
     backgroundColor: COLORS.white,
     borderRadius: 15,
     height: 65,
+    
   },
   inputLogin: {
     fontSize: 20,
@@ -74,7 +76,7 @@ const authStyles = StyleSheet.create({
     borderColor:COLORS.greyText,
     borderRadius:15,
     fontFamily:'PoppinsMedium',
-    paddingLeft:30
+    paddingLeft:60
     
     
   },
@@ -128,13 +130,13 @@ const authStyles = StyleSheet.create({
   },
   signUpText: {
     color: '#00000',
-    fontSize: 18,
+    fontSize: 16,
     marginVertical:10,
     fontFamily:'PoppinsRegular',
   },
   signUpLink: {
     color: '#0033FF', // Yellowish color for "Sign up" link
-    fontSize: 18,
+    fontSize: 16,
     fontFamily:'PoppinsRegular',
     alignSelf:'center'
   },
@@ -153,8 +155,8 @@ const authStyles = StyleSheet.create({
     width: '100%',
   },
   googleLogo: {
-    width: 55,
-    height: 55,
+    width: 50,
+    height: 50,
     borderRadius:10,
     borderWidth:1,
     borderColor:'#D9D9D9',
