@@ -1,7 +1,6 @@
 import FontAwesome5 from "@expo/vector-icons/FontAwesome5";
 import { useNavigation } from "@react-navigation/native";
 import COLORS from "../../constants/Colors";
-import { useRouter } from "expo-router";
 import Button from "../../components/Button";
 import Icon from "react-native-vector-icons";
 import { useState } from "react";
@@ -14,6 +13,8 @@ import {
   TouchableOpacity,
   View,
   Pressable,
+  KeyboardAvoidingView,
+  Platform,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import authStyles from "./styles";
@@ -60,7 +61,7 @@ const signIn = () => {
       // Navigate to next screen or dashboard here
     } catch (error) {
       console.log(error);
-      // Alert.alert('Signup failed', error.response?.data?.message || 'Something went wrong');
+      Alert.alert('Signup failed', error.response?.data?.message || 'Something went wrong');
     } finally {
       setLoading(false);
     }
@@ -99,13 +100,20 @@ const signIn = () => {
             fontFamily: "PoppinsRegular",
             fontSize: 17,
             fontWeight: 400,
+            marginVertical:10
           }}
         >
           Let's help you meet your tasks!
         </Text>
       </View>
 
-      <ScrollView>
+      <KeyboardAvoidingView
+        behavior={Platform.OS === "ios" ? "padding" : "height"}
+        style={{ flex: 1 }}
+        keyboardVerticalOffset={Platform.OS === "ios" ? 0 : 5}
+      >
+
+        <ScrollView>
         <View style={authStyles.formContainer}>
           <Text style={authStyles.inputLabel}>
             Sign Up <Text style={{ fontSize: 16 }}>in few seconds</Text>{" "}
@@ -127,7 +135,7 @@ const signIn = () => {
                 style={[
                   authStyles.input,
                   {
-                    borderWidth: userFocused ? 1 : 1,
+                    borderWidth: 1,
                     borderColor: userFocused ? COLORS.primary : COLORS.greyText,
                   },
                 ]}
@@ -158,7 +166,7 @@ const signIn = () => {
                 style={[
                   authStyles.input,
                   {
-                    borderWidth: userFocused ? 1 : 1,
+                    borderWidth: 1,
                     borderColor: emailFocused
                       ? COLORS.primary
                       : COLORS.greyText,
@@ -194,7 +202,7 @@ const signIn = () => {
                 style={[
                   authStyles.input,
                   {
-                    borderWidth: userFocused ? 1 : 1,
+                    borderWidth: 1,
                     borderColor: passwordFocused
                       ? COLORS.primary
                       : COLORS.greyText,
@@ -214,26 +222,24 @@ const signIn = () => {
                   setPasswordFocused(true);
                 }}
               />
+
+
+
               <View style={{ position: "absolute", bottom: 25, right: 20 }}>
-                {passwordShown ? (
-                  <Pressable
-                    onPress={() => {
-                      setPasswordShown(false);
-                    }}
-                  >
-                    <FontAwesome5 name="eye" size={18} color="#00000" />
-                  </Pressable>
-                ) : (
-                  <Pressable
-                    onPress={() => {
-                      setPasswordShown(true);
-                    }}
-                  >
-                    <FontAwesome5 name="eye-slash" size={18} color="#00000" />
-                  </Pressable>
-                )}
+                <Pressable
+                  onPress={() => {
+                    setPasswordShown(!passwordShown);
+                  }}
+                >
+                  <FontAwesome5 name={passwordShown?"eye":"eye-slash"} size={18} color="#00000" />
+                </Pressable>
+                
               </View>
+
             </View>
+
+
+
             <View style={authStyles.inputWrapper}>
 
               <View style={{ position: "absolute", bottom: 25, left: 15 }}>
@@ -242,13 +248,14 @@ const signIn = () => {
                   resizeMode="contain"
                   style={{width:25, height:25}}
                 />
+
               </View>
               
               <TextInput
                 style={[
                   authStyles.input,
                   {
-                    borderWidth: userFocused ? 1 : 1,
+                    borderWidth: 1,
                     borderColor: confirmFocused
                       ? COLORS.primary
                       : COLORS.greyText,
@@ -270,34 +277,28 @@ const signIn = () => {
               />
 
               <View style={{ position: "absolute", bottom: 25, right: 20 }}>
-                {passwordShown ? (
                   <Pressable
                     onPress={() => {
-                      setShowConfirmPassword(false);
+                      setShowConfirmPassword(!showConfirmPassword);
                     }}
                   >
-                    <FontAwesome5 name="eye" size={18} color="#00000" />
+                    <FontAwesome5  name={showConfirmPassword ? "eye":"eye-slash"} size={18} color="#00000" />
                   </Pressable>
-                ) : (
-                  <Pressable
-                    onPress={() => {
-                      setShowConfirmPassword(true);
-                    }}
-                  >
-                    <FontAwesome5 name="eye-slash" size={18} color="#00000" />
-                  </Pressable>
-                )}
               </View>
             </View>
           </View>
 
           <View style={{ marginTop: 30 }}>
+            
             <Button
-              text={loading ? "Signing Up..." : "Sign Up"}
+              text={ loading ? "Signing in" : "Sign Up"}
               onPress={handleSignUp}
+              loading={loading}
               disable={loading}
             />
           </View>
+
+    
 
           <View style={authStyles.signUpPrompt}>
             <Text style={authStyles.signUpText}>Already have an account?</Text>
@@ -308,7 +309,9 @@ const signIn = () => {
             </TouchableOpacity>
           </View>
         </View>
-      </ScrollView>
+
+        </ScrollView>
+      </KeyboardAvoidingView>
     </SafeAreaView>
   );
 };

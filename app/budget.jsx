@@ -14,13 +14,23 @@ import { router } from "expo-router";
 import { useState } from "react";
 import AntDesign from "@expo/vector-icons/AntDesign";
 import Button from "../components/Button";
+import style from "./style";
+import COLORS from "../constants/Colors";
+import { logProfileData } from "react-native-calendars/src/Profiler";
+import BudgetItem from "../components/textInput";
 
 const Budget = () => {
-  const [userFocus, setUserFocus] = useState(false);
+  const [userFood, setUserFood] = useState(false);
+  const [userHouse, setUserHouse] = useState(false);
+  const [userCloth, setUserCloth] = useState(false);
+  const [userFuel, setUserFuel] = useState(false);
+  const [userElect, setUserElect] = useState(false);
+  const [userInter, setUserInter] = useState(false);
+  const [userEnter, setUserEnter] = useState(false);
 
   return (
     <SafeAreaView>
-      <ScrollView style={styles.container}>
+      <ScrollView style={style.container}>
         <View style={{ marginVertical: 40 }}>
           <View
             style={{
@@ -51,12 +61,29 @@ const Budget = () => {
             </Text>
           </View>
         </View>
-        <View style={styles.loginbox1}>
+        <View style={style.loginBox}>
           <View style={{ marginTop: 20, padding: 10 }}>
             <Text style={{ fontFamily: "PoppinsRegular", fontSize: 20 }}>
               Total Allocation Vs. Budget
             </Text>
-            <Text style={styles.Mark}></Text>
+            <View
+              style={{
+                height: 6,
+                width: "100%",
+                backgroundColor: "#E0E0E0",
+                borderRadius: 3,
+                marginTop: 10,
+              }}
+            >
+              <View
+                style={{
+                  height: 6,
+                  width: "60%",
+                  backgroundColor: COLORS.primary,
+                  borderRadius: 3,
+                }}
+              />
+            </View>
           </View>
           <View style={{ marginTop: 30, padding: 10 }}>
             <Text style={{ fontFamily: "PoppinsRegular", fontSize: 20 }}>
@@ -64,220 +91,48 @@ const Budget = () => {
             </Text>
           </View>
 
-          <View
-            style={{
-              flexDirection: "row",
-              justifyContent: "space-between",
-              marginBottom: 10,
-              paddingHorizontal: 10,
-            }}
-          >
-            <Image
-              style={{ width: 105, height: 40 }}
-              source={require("../assets/images/Food.png")}
-            />
-            <TextInput
-              style={{
-                width: 100,
-                height: 38,
-                borderWidth: userFocus ? 1 : 0,
-                borderColor: userFocus ? "#26A69A" : "transparent",
-                backgroundColor: "red",
-                borderRadius: 10,
-              }}
-              cursorColor={"#26A69A"}
-              onFocus={() => {
-                setUserFocus(true);
-              }}
-              onBlur={() => {
-                setUserFocus(false);
-              }}
-            ></TextInput>
-          </View>
+          <BudgetItem
+            icon={require("../assets/images/Food.png")}
+            focus={userFood}
+            setFocus={setUserFood}
+          />
 
-          <View
-            style={{
-              flexDirection: "row",
-              justifyContent: "space-between",
-              padding: 10,
-              marginBottom: 10,
-            }}
-          >
-            <Image
-              style={{ width: 135, height: 40, paddingRight: 10 }}
-              source={require("../assets/images/House.png")}
-            />
-            <TextInput
-              style={{
-                width: 100,
-                height: 38,
-                backgroundColor: "red",
-                borderWidth: userFocus ? 1 : 0,
-                borderColor: userFocus ? "#26A69A" : "transparent",
-                borderRadius: 10,
-              }}
-              cursorColor={"#26A69A"}
-              onFocus={() => {
-                setUserFocus(true);
-              }}
-              onBlur={() => {
-                setUserFocus(false);
-              }}
-            />
-          </View>
+          <BudgetItem
+            icon={require("../assets/images/House.png")}
+            focus={userHouse}
+            setFocus={setUserHouse}
+          />
 
-          <View
-            style={{
-              flexDirection: "row",
-              justifyContent: "space-between",
-              marginBottom: 10,
-              padding: 10,
-            }}
-          >
-            <Image
-              style={{ width: 140, height: 40 }}
-              source={require("../assets/images/Cloth.png")}
-            />
-            <TextInput
-              style={{
-                width: 100,
-                height: 38,
-                backgroundColor: "red",
-                borderWidth: userFocus ? 1 : 0,
-                borderColor: userFocus ? "#26A69A" : "transparent",
-                borderRadius: 10,
-              }}
-              cursorColor={"#26A69A"}
-              onFocus={() => {
-                setUserFocus(true);
-              }}
-              onBlur={() => {
-                setUserFocus(false);
-              }}
-            />
-          </View>
+          <BudgetItem
+            icon={require("../assets/images/Cloth.png")}
+            focus={userCloth}
+            setFocus={setUserCloth}
+          />
 
-          <View
-            style={{
-              flexDirection: "row",
-              justifyContent: "space-between",
-              marginBottom: 10,
-              padding: 10,
-            }}
-          >
-            <Image
-              style={{ width: 105, height: 44 }}
-              source={require("../assets/images/Fuel.png")}
-            />
-            <TextInput
-              style={{
-                width: 100,
-                height: 38,
-                backgroundColor: "red",
-                borderWidth: userFocus ? 1 : 0,
-                borderColor: userFocus ? "#26A69A" : "transparent",
-                borderRadius: 10,
-              }}
-              cursorColor={"#26A69A"}
-              onFocus={() => {
-                setUserFocus(true);
-              }}
-              onBlur={() => {
-                setUserFocus(false);
-              }}
-            />
-          </View>
+          <BudgetItem
+            icon={require("../assets/images/Fuel.png")}
+            focus={userFuel}
+            setFocus={setUserFuel}
+          />
 
-          <View
-            style={{
-              flexDirection: "row",
-              justifyContent: "space-between",
-              marginBottom: 10,
-              padding: 10,
-            }}
-          >
-            <Image
-              style={{ width: 165, height: 44 }}
-              source={require("../assets/images/Electric.png")}
-            />
-            <TextInput
-              style={{
-                width: 100,
-                height: 38,
-                backgroundColor: "red",
-                borderWidth: userFocus ? 1 : 0,
-                borderColor: userFocus ? "#26A69A" : "transparent",
-                borderRadius: 10,
-              }}
-              cursorColor={"#26A69A"}
-              onFocus={() => {
-                setUserFocus(true);
-              }}
-              onBlur={() => {
-                setUserFocus(false);
-              }}
-            />
-          </View>
+          <BudgetItem
+            icon={require("../assets/images/Electric.png")}
+            focus={userElect}
+            setFocus={setUserElect}
+          />
 
-          <View
-            style={{
-              flexDirection: "row",
-              justifyContent: "space-between",
-              marginBottom: 10,
-              padding: 10,
-            }}
-          >
-            <Image
-              style={{ width: 150, height: 45 }}
-              source={require("../assets/images/Internet.png")}
-            />
-            <TextInput
-              style={{
-                width: 100,
-                height: 38,
-                borderWidth: userFocus ? 1 : 0,
-                borderColor: userFocus ? "#26A69A" : "transparent",
-                borderRadius: 10,
-              }}
-              cursorColor={"#26A69A"}
-              onFocus={() => {
-                setUserFocus(true);
-              }}
-              onBlur={() => {
-                setUserFocus(false);
-              }}
-            />
-          </View>
+          <BudgetItem
+            icon={require("../assets/images/Internet.png")}
+            focus={userInter}
+            setFocus={setUserInter}
+          />
 
-          <View
-            style={{
-              flexDirection: "row",
-              justifyContent: "space-between",
-              marginBottom: 10,
-              padding: 10,
-            }}
-          >
-            <Image
-              style={{ width: 210, height: 42 }}
-              source={require("../assets/images/Entertain.png")}
-            />
-            <TextInput
-              style={{
-                width: 100,
-                height: 38,
-                borderWidth: userFocus ? 1 : 0,
-                borderColor: userFocus ? "#26A69A" : "transparent",
-                borderRadius: 10,
-              }}
-              cursorColor={"#26A69A"}
-              onFocus={() => {
-                setUserFocus(true);
-              }}
-              onBlur={() => {
-                setUserFocus(false);
-              }}
-            />
-          </View>
+          <BudgetItem
+            icon={require("../assets/images/Entertain.png")}
+            focus={userEnter}
+            setFocus={setUserEnter}
+          />
+
           <View
             style={{
               flexDirection: "row",
@@ -285,12 +140,12 @@ const Budget = () => {
               justifyContent: "flex-end",
             }}
           >
-            <AntDesign name="pluscircleo" size={40} color="#26A69A" />
+            <AntDesign name="pluscircleo" size={30} color="#26A69A" />
           </View>
           <View>
             <Button
               onPress={() => {
-                router.navigate("/setting");
+                router.navigate("/expense");
               }}
               text={"Set Budget"}
             />
