@@ -9,6 +9,7 @@ import { useNavigation } from "@react-navigation/native";
 import { router } from "expo-router";
 import axios from "axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { Alert } from "react-native";
 
 const login = () => {
   const [emailPhone, setEmailPhone] = useState("");
@@ -19,6 +20,26 @@ const login = () => {
   const [passwordFocused, setPasswordFocused] = useState(false);
   const [loading, setLoading] = useState(false);
 
+  const [email, setEmail] = useState('');
+
+  //Code Forgot Password
+  const forgotPassword = async(email) => {
+    try {
+      const response = await axios.post("https://capstone-group-3-backend.onrender.com/api/users/forgot-password", {
+        email,
+      });
+  
+      console.log("Password reset email sent:", response.data);
+      Alert.alert("Success", "Password reset instructions have been sent to your email.");
+    } catch (error) {
+      console.error("Error sending password reset:", error.response?.data || error.message);
+      Alert.alert("Error", "Unable to send password reset. Please try again.");
+    }
+  };
+
+  
+
+  //Code for Login
   const handleSignIn = async () => {
     if (!emailPhone || !password) {
       Alert.alert("All fields are required");
@@ -178,7 +199,8 @@ const login = () => {
 
         <View>
           <TouchableOpacity>
-            <Text style={authStyles.forgotPasswordText}>Forgot Password?</Text>
+            <Text style={authStyles.forgotPasswordText}
+            onPress={()=>forgotPassword(emailPhone)}>Forgot Password?</Text>
           </TouchableOpacity>
         </View>
 

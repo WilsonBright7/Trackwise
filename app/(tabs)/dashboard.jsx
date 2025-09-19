@@ -20,9 +20,9 @@ const barData = [
 
 const Dashboard = () => {
 
-    const [user, setUser] = useState('')
+  const [user, setUser] = useState('')
 
-
+// Process to ParsedData from Login to dashboard 
   useEffect(() => {
     const getDataFromStorage = async () => {
       try {

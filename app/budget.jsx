@@ -15,6 +15,7 @@ import { useState } from "react";
 import AntDesign from "@expo/vector-icons/AntDesign";
 import Button from "../components/Button";
 import homeStyles from "./style";
+import COLORS from "../constants/Colors";
 
 const Budget = () => {
   const [userFocus, setUserFocus] = useState(false);
@@ -52,7 +53,10 @@ const Budget = () => {
             </Text>
           </View>
         </View>
-        <View style={homeStyles.loginbox1}>
+        <View style={{backgroundColor: COLORS.secondary, borderTopLeftRadius:40, borderTopRightRadius:40,
+        paddingBottom: 5, //flex:1,
+        marginTop:5,
+        minHeight:'50%',}}>
           <View style={{ marginTop: 20, padding: 10 }}>
             <Text style={{ fontFamily: "PoppinsRegular", fontSize: 20 }}>
               Total Allocation Vs. Budget
