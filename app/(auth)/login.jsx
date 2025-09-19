@@ -63,11 +63,11 @@ const login = () => {
         router.push("/dashboard");
       }
 
-      // Alert.alert('Signup successful!');
+      //Alert.alert('Signup successful!');
       // Navigate to next screen or dashboard here
     } catch (error) {
       console.log(error);
-      // Alert.alert('Signup failed', error.response?.data?.message || 'Something went wrong');
+      Alert.alert('Signup failed', error.response?.data?.message || 'Something went wrong');
     } finally {
       setLoading(false);
     }
@@ -194,6 +194,7 @@ const login = () => {
             text={loading ? "loging in..." : "Login"}
             onPress={handleSignIn}
             disable={loading}
+            loading={loading}
           />
         </View>
 
@@ -243,7 +244,6 @@ const login = () => {
               />
             </TouchableOpacity>
           </View>
-
           <View>
             <TouchableOpacity
               style={authStyles.googleSignInButton}

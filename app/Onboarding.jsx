@@ -1,17 +1,15 @@
-import React from "react";
-import {
+import { 
   View,
   Text,
   Image,
-  StyleSheet,
   Dimensions,
   TouchableOpacity,
 } from "react-native";
 import COLORS from "../constants/Colors";
 import { SafeAreaView } from "react-native-safe-area-context";
 import styles from "./styles";
-import Button from "../components/Button";
 import { router } from "expo-router";
+
 
 const { width, height } = Dimensions.get("window");
 

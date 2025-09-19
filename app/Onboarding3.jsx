@@ -1,3 +1,4 @@
+import {useEffect}from "react";
 import {
   View,
   Text,
@@ -6,15 +7,38 @@ import {
   Dimensions,
   TouchableOpacity,
 } from "react-native";
+import * as Notifications from 'expo-notifications'
 import COLORS from "../constants/Colors";
 import { SafeAreaView } from "react-native-safe-area-context";
 import styles from "./styles";
 import Button from "../components/Button";
 import { router } from "expo-router";
 
+
+Notifications.setNotificationHandler({
+  handleNotification: async () => ({
+    shouldShowBanner: true,
+    shouldPlaySound: true,
+    shouldSetBadge: false,
+  }),
+});
+
 const { width, height } = Dimensions.get("window");
 
 const Onboarding3 = () => {
+
+
+    const handleLocalNotification = async () => {
+      await Notifications.scheduleNotificationAsync({
+        content: {
+          title: "WELCOME TO TRACKWISE!",
+          body: "You can now track your finances easily.",
+          sound: true,
+          data: { customData: "any value" },
+        },
+        trigger: null, // Show immediately
+      });
+    };
   return (
     <SafeAreaView style={styles.onboard}>
       <View style={styles.onboard}>
@@ -61,9 +85,10 @@ const Onboarding3 = () => {
       <View style={{ paddingHorizontal: 10, marginVertical: 20 }}>
         <Button
           text={"Get Started"}
-          onPress={() => {
-            router.navigate("/signIn");
-          }}
+          onPress={async () => {
+              await handleLocalNotification();
+              router.navigate("/signIn");
+            }}
         />
       </View>
     </SafeAreaView>

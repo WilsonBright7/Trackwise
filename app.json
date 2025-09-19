@@ -7,33 +7,38 @@
     "icon": "./assets/images/trackwise.png",
     "scheme": "trackwise",
     "userInterfaceStyle": "automatic",
-     "splash":{
-      "image" : "./assets/images/trackwise.png",
-      "backgroundColor":"#26A69A",
-      "resizeMode":"contain"
+    "splash": {
+      "image": "./assets/images/tracksplash.png",
+      "backgroundColor": "#26A69A",
+      "resizeMode": "contain"
     },
     "newArchEnabled": true,
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.GROUP3.TRACKWISE",
+      "infoPlist": {
+        "ITSAppUsesNonExemptEncryption": false
+      }
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/images/trackwise.png",
+        "foregroundImage": "./assets/images/tracksplash.png",
         "backgroundColor": "#26A69A"
       },
-      "edgeToEdgeEnabled": true
+      "edgeToEdgeEnabled": true,
+      "package": "com.GROUP3.TRACKWISE"
     },
     "web": {
       "bundler": "metro",
       "output": "static",
-      "favicon": "./assets/images/trackwise.png"
+      "favicon": "./assets/images/tracksplash.png"
     },
     "plugins": [
       "expo-router",
       [
         "expo-splash-screen",
         {
-          "image": "./assets/images/trackwise.png",
+          "image": "./assets/images/tracksplash.png",
           "imageWidth": 200,
           "resizeMode": "contain",
           "backgroundColor": "#26A69A"
@@ -42,6 +47,12 @@
     ],
     "experiments": {
       "typedRoutes": true
+    },
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "b12742ca-af24-45e9-a7c2-295e7b21f846"
+      }
     }
   }
 }

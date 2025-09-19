@@ -63,9 +63,11 @@ const authStyles = StyleSheet.create({
     
   },
   inputLogin: {
-    fontSize: 20,
+    fontSize: 22,
     fontFamily:'PoppinsMedium',
-    marginLeft: 40
+    marginLeft: 40,
+    marginVertical: 10,
+    marginBottom:15
 
   },
   input: {
@@ -105,7 +107,7 @@ const authStyles = StyleSheet.create({
     
   },
   forgotPasswordText: {
-    fontSize: 18,
+    fontSize: 16,
     fontWeight: 400,
     fontFamily:'PoppinsRegular',
     alignSelf:'flex-end',
@@ -131,7 +133,7 @@ const authStyles = StyleSheet.create({
   signUpText: {
     color: '#00000',
     fontSize: 16,
-    marginVertical:10,
+    marginVertical:15,
     fontFamily:'PoppinsRegular',
   },
   signUpLink: {
@@ -147,7 +149,7 @@ const authStyles = StyleSheet.create({
   googleSignInButton: {
     backgroundColor: '#fff', // White background for Google button
     borderRadius: 8,
-    paddingVertical: 20,
+    paddingVertical: 10,
     marginHorizontal:20,
     justifyContent: 'center',
     alignContent:'center',
@@ -165,7 +167,7 @@ const authStyles = StyleSheet.create({
     color: '#000',
     fontSize: 16,
     fontWeight: '500',
-  }
+  },
 
   
 })

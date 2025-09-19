@@ -283,8 +283,13 @@ const Account = () => {
           </Text>
         </View>
 
+
         <View style={homeStyles.loginbox1}>
           <View style={{ marginTop: 50, paddingHorizontal: 15 }}>
+
+        <View style={homeStyles.loginBox}>
+          <View style={{ marginTop: 20, paddingHorizontal: 15 }}>
+
             <Text style={homeStyles.Text}>Source of Income</Text>
 
             <View style={{ position: "relative" }}>

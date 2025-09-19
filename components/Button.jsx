@@ -1,17 +1,25 @@
-import { Text, TouchableOpacity } from "react-native";
+import { Text, TouchableOpacity, ActivityIndicator } from "react-native";
 import COLORS from '../constants/Colors'
-const Button =({text, onPress})=>{
+const Button = ({text, onPress, loading, disable})=>{
     return(
         
-        <TouchableOpacity onPress={onPress} style={{height:60, 
+        <TouchableOpacity onPress={onPress} disabled={disable || loading} style={{height:60, 
             backgroundColor:COLORS.primary, 
              borderRadius:15,
             justifyContent:'center'}}>
-           
-            <Text style={{textAlign:'center', 
+
+                {loading ? (
+                    <ActivityIndicator color={COLORS.white}/>
+                ) : (
+
+                    <Text style={{textAlign:'center', 
                 color:COLORS.white,
                 fontFamily:'PoppinsBold', 
             fontSize:20, fontWeight:400}}>{text}</Text>
+
+                )}
+           
+            
         </TouchableOpacity>
     
     )
