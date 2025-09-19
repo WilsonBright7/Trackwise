@@ -6,6 +6,7 @@ import { Image, ScrollView, Text, TouchableOpacity, View } from "react-native";
 import { BarChart } from "react-native-gifted-charts";
 import { SafeAreaView } from "react-native-safe-area-context";
 import homeStyles from "../style";
+
 import { Ionicons, MaterialIcons, FontAwesome } from "@expo/vector-icons";
 import axios from "axios";
 import { useFocusEffect } from "@react-navigation/native";
@@ -20,12 +21,17 @@ const barData = [
   { value: 65, label: "Saving", frontColor: "#197B01" },
 ];
 
+
+
+const Dashboard = () => {
 const Dashboard = () => {
   const [user, setUser] = useState("");
   const [recentExpenses, setRecentExpenses] = useState([]);
 
   const [token, setToken] = useState("");
+  const [user, setUser] = useState('')
 
+// Process to ParsedData from Login to dashboard 
   useEffect(() => {
     (async () => {
       try {
@@ -102,6 +108,12 @@ const Dashboard = () => {
     <SafeAreaView>
       <ScrollView style={homeStyles.container}>
         <View
+          style={{flexDirection: "row", justifyContent: "space-between", marginTop: 15, marginHorizontal:15}}>
+          <Image style={{ width: 50, height: 50 }} source={require("../../assets/images/pix.png")}/>
+          <Image style={{ width: 50, height: 50 }} source={require("../../assets/images/bell.png")}/>
+        </View>
+        <View style={{ alignItems: "center" }}>
+          <Text style={{color: COLORS.white, fontFamily: "PoppinsBold", fontSize: 20,}}> Good afternoon  {user ? user?.fullname : ''}!
           style={{
             flexDirection: "row",
             justifyContent: "space-between",
@@ -135,8 +147,20 @@ const Dashboard = () => {
           <Text style={{ color: COLORS.white, fontFamily: "PoppinsSemi" }}>
             20 days left for this month
           </Text>
+          <Text style={{ color: COLORS.white, fontFamily: "PoppinsSemi" }}>20 days left for this month</Text>
         </View>
         <View style={homeStyles.loginBox}>
+          <View style={{flexDirection: "row", justifyContent: "space-between", marginBlock: -35, marginHorizontal: 10,}}>
+            <Image style={{ width: 154.93, height: 88, marginHorizontal:15}} source={require("../../assets/images/card1.png")}/>
+            <Image style={{ width: 154.93, height: 88 }} source={require("../../assets/images/card2.png")}/>
+          </View>
+          <View style={homeStyles.Box}>
+            <Text style={{fontFamily: "PoppinsSemiBold", fontSize: 20, color: COLORS.white,}}>
+              Month</Text>
+            <Text style={{fontFamily: "PoppinsSemiBold", fontSize: 20, color: COLORS.white,}}
+            >Statistics</Text>
+          </View>
+          
           <View
             style={{
               flexDirection: "row",

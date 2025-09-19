@@ -14,6 +14,9 @@ import { router } from "expo-router";
 import { useState } from "react";
 import AntDesign from "@expo/vector-icons/AntDesign";
 import Button from "../components/Button";
+import homeStyles from "./style";
+import COLORS from "../constants/Colors";
+
 import style from "./style";
 import COLORS from "../constants/Colors";
 import { logProfileData } from "react-native-calendars/src/Profiler";
@@ -30,6 +33,8 @@ const Budget = () => {
 
   return (
     <SafeAreaView>
+      <ScrollView style={homeStyles.container}>
+
       <ScrollView style={style.container}>
         <View style={{ marginVertical: 40 }}>
           <View
@@ -61,11 +66,17 @@ const Budget = () => {
             </Text>
           </View>
         </View>
+        <View style={{backgroundColor: COLORS.secondary, borderTopLeftRadius:40, borderTopRightRadius:40,
+        paddingBottom: 5, //flex:1,
+        marginTop:5,
+        minHeight:'50%',}}>
         <View style={style.loginBox}>
           <View style={{ marginTop: 20, padding: 10 }}>
             <Text style={{ fontFamily: "PoppinsRegular", fontSize: 20 }}>
               Total Allocation Vs. Budget
             </Text>
+            <Text style={homeStyles.Mark}></Text>
+
             <View
               style={{
                 height: 6,
