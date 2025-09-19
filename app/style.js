@@ -2,10 +2,10 @@ import { StyleSheet } from 'react-native';
 import COLORS from '../constants/Colors';
 
 
-const styles = StyleSheet.create({
+const homeStyles = StyleSheet.create({
     container: {
       backgroundColor:COLORS.primary,
-        
+      
     },
     loginBox: {
         backgroundColor: COLORS.secondary,
@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
         flex:1,
         marginTop:40,
         minHeight:'50%',
-        
+       shadowOffset:{width:0, height:4}, 
         
     },
     Box:{
@@ -107,4 +107,4 @@ const styles = StyleSheet.create({
 
 
 
-export default styles;
+export default homeStyles;

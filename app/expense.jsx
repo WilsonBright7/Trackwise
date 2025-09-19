@@ -17,15 +17,24 @@ import COLORS from "../constants/Colors";
 import AntDesign from "@expo/vector-icons/AntDesign";
 import FontAwesome6 from "@expo/vector-icons/FontAwesome6";
 import Button from "../components/Button";
+import homeStyles from "./style";
+
+const [showCalendar, setShowCalendar] = useState(false);
+    const [selectedDate, setSelectedDate] = useState('');
+    
+    const handleDateSelect = (day)=> {
+      setSelectedDate(day.dateString);
+      setShowCalendar(false);
+    }
 
 const Expenses = () => {
-  const [userFocus, setUserFocus] = useState(false);
-  const [date, setDate] = useState(new Date());
-  const [show, setShow] = useState(false);
+  // const [userFocus, setUserFocus] = useState(false);
+  // const [date, setDate] = useState(new Date());
+  // const [show, setShow] = useState(false);
 
   return (
     <SafeAreaView>
-      <ScrollView style={styles.container}>
+      <ScrollView style={homeStyles.container}>
         <View style={{ marginVertical: 20 }}>
           <View
             style={{
@@ -67,7 +76,7 @@ const Expenses = () => {
           </Text>
         </View>
 
-        <View style={styles.loginbox1}>
+        <View style={homeStyles.loginbox1}>
           <View style={{ marginTop: 50, paddingHorizontal: 15 }}>
             <Text style={styles.Text}>Enter Amount</Text>
 
@@ -94,7 +103,7 @@ const Expenses = () => {
           </View>
 
           <View style={{ marginTop: 30, paddingHorizontal: 15 }}>
-            <Text style={styles.Text}>Enter Description</Text>
+            <Text style={homeStyles.Text}>Enter Description</Text>
 
             <View style={{ position: "relative" }}>
               <TextInput
@@ -127,9 +136,9 @@ const Expenses = () => {
                 marginLeft: 15,
               }}
             >
-              <Text style={[styles.Mark, { textAlign: "left" }]}>Data</Text>
-              <Text style={[styles.Mark, { textAlign: "left" }]}>Food</Text>
-              <Text style={[styles.Mark, { textAlign: "left" }]}>Gift</Text>
+              <Text style={[homeStyles.Mark, { textAlign: "left" }]}>Data</Text>
+              <Text style={[homeStyles.Mark, { textAlign: "left" }]}>Food</Text>
+              <Text style={[homeStyles.Mark, { textAlign: "left" }]}>Gift</Text>
             </View>
           </TouchableOpacity>
 
@@ -142,15 +151,23 @@ const Expenses = () => {
               marginLeft: 15,
             }}
           >
-            <Text style={[styles.Mark, { textAlign: "left" }]}>Data</Text>
-            <Text style={[styles.Mark, { textAlign: "left" }]}>Food</Text>
+            <Text style={[homeStyles.Mark, { textAlign: "left" }]}>Data</Text>
+            <Text style={[homeStyles.Mark, { textAlign: "left" }]}>Food</Text>
             <AntDesign name="pluscircleo" size={24} color="black" />
           </View>
 
           <View style={{ marginTop: 30, paddingHorizontal: 15 }}>
-            <Text style={styles.Text}>Date</Text>
+            <Text style={homeStyles.Text}>Date</Text>
+            
+            <TouchableOpacity
+            onPress={()=>setShowCalendar(!showCalendar)}>
+              <Text style={{color:COLORS.white, paddingLeft:15}}>{selectedDate || 'Select Date'}</Text>
+            </TouchableOpacity>
+            {showCalendar && (<Calendar
+              onDayPress={handleDateSelect} />
+            )}
 
-            <View style={{ position: "relative" }}>
+            {/* <View style={{ position: "relative" }}>
               <TextInput
                 style={[
                   styles.Input,
@@ -180,7 +197,7 @@ const Expenses = () => {
                   top: 7,
                 }}
               />
-            </View>
+            </View> */}
           </View>
 
           <View>

@@ -1,13 +1,12 @@
 import COLORS from "@/constants/Colors";
-import { ScrollView, Text, Image, View, TouchableOpacity } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
-import { StyleSheet } from "react-native";
-import style from "../style";
-import { Button } from "@react-navigation/elements";
-import { router } from "expo-router";
-import { BarChart, PieChart } from "react-native-gifted-charts";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { router } from "expo-router";
 import { useEffect, useState } from "react";
+import { Image, ScrollView, Text, TouchableOpacity, View } from "react-native";
+import { BarChart } from "react-native-gifted-charts";
+import { SafeAreaView } from "react-native-safe-area-context";
+import homeStyles from "../style";
+
 
 const barData = [
   { value: 250, label: "Food", frontColor: "#0263FF" },
@@ -16,6 +15,8 @@ const barData = [
   { value: 320, label: "Rent", frontColor: "#C07D65" },
   { value: 600, label: "Saving", frontColor: "#197B01" },
 ];
+
+
 
 const Dashboard = () => {
 
@@ -43,76 +44,29 @@ const Dashboard = () => {
 
   return (
     <SafeAreaView>
-      <ScrollView style={style.container}>
+      <ScrollView style={homeStyles.container}>
         <View
-          style={{
-            flexDirection: "row",
-            justifyContent: "space-between",
-            marginTop: 15,
-            marginHorizontal: 15,
-          }}
-        >
-          <Image
-            style={{ width: 50, height: 50 }}
-            source={require("../../assets/images/pix.png")}
-          />
-          <Image
-            style={{ width: 50, height: 50 }}
-            source={require("../../assets/images/bell.png")}
-          />
+          style={{flexDirection: "row", justifyContent: "space-between", marginTop: 15, marginHorizontal:15}}>
+          <Image style={{ width: 50, height: 50 }} source={require("../../assets/images/pix.png")}/>
+          <Image style={{ width: 50, height: 50 }} source={require("../../assets/images/bell.png")}/>
         </View>
         <View style={{ alignItems: "center" }}>
-          <Text
-            style={{
-              color: COLORS.white,
-              fontFamily: "PoppinsBold",
-              fontSize: 20,
-            }}
-          >
-            Good afternoon  {user ? user?.fullname : ''}!
+          <Text style={{color: COLORS.white, fontFamily: "PoppinsBold", fontSize: 20,}}> Good afternoon  {user ? user?.fullname : ''}!
           </Text>
-          <Text style={{ color: COLORS.white, fontFamily: "PoppinsSemi" }}>
-            20 days left for this month
-          </Text>
+          <Text style={{ color: COLORS.white, fontFamily: "PoppinsSemi" }}>20 days left for this month</Text>
         </View>
-        <View style={style.loginBox}>
-          <View
-            style={{
-              flexDirection: "row",
-              justifyContent: "space-between",
-              marginBlock: -35,
-              marginHorizontal: 10,
-            }}
-          >
-            <Image
-              style={{ width: 154.93, height: 88, marginHorizontal: 15 }}
-              source={require("../../assets/images/card1.png")}
-            />
-            <Image
-              style={{ width: 154.93, height: 88 }}
-              source={require("../../assets/images/card2.png")}
-            />
+        <View style={homeStyles.loginBox}>
+          <View style={{flexDirection: "row", justifyContent: "space-between", marginBlock: -35, marginHorizontal: 10,}}>
+            <Image style={{ width: 154.93, height: 88, marginHorizontal:15}} source={require("../../assets/images/card1.png")}/>
+            <Image style={{ width: 154.93, height: 88 }} source={require("../../assets/images/card2.png")}/>
           </View>
-          <View style={style.Box}>
-            <Text
-              style={{
-                fontFamily: "PoppinsSemiBold",
-                fontSize: 20,
-                color: COLORS.white,
-              }}
-            >
-              Month
-            </Text>
-            <Text
-              style={{
-                fontFamily: "PoppinsSemiBold",
-                fontSize: 20,
-                color: COLORS.white,
-              }}
-            >
-              Statistics
-            </Text>
+          <View style={homeStyles.Box}>
+            <Text style={{fontFamily: "PoppinsSemiBold", fontSize: 20, color: COLORS.white,}}>
+              Month</Text>
+            <Text style={{fontFamily: "PoppinsSemiBold", fontSize: 20, color: COLORS.white,}}
+            >Statistics</Text>
           </View>
+          
           <View style={{ marginTop: 30 }}></View>
           <View>
             <BarChart
@@ -175,7 +129,7 @@ const Dashboard = () => {
               </Text>
             </TouchableOpacity>
           </View>
-          <View style={style.Line}></View>
+          <View style={homeStyles.Line}></View>
           <Text
             style={{
               fontFamily: "PoppinsSemiBold",

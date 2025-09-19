@@ -14,13 +14,14 @@ import { router } from "expo-router";
 import { useState } from "react";
 import AntDesign from "@expo/vector-icons/AntDesign";
 import Button from "../components/Button";
+import homeStyles from "./style";
 
 const Budget = () => {
   const [userFocus, setUserFocus] = useState(false);
 
   return (
     <SafeAreaView>
-      <ScrollView style={styles.container}>
+      <ScrollView style={homeStyles.container}>
         <View style={{ marginVertical: 40 }}>
           <View
             style={{
@@ -51,12 +52,12 @@ const Budget = () => {
             </Text>
           </View>
         </View>
-        <View style={styles.loginbox1}>
+        <View style={homeStyles.loginbox1}>
           <View style={{ marginTop: 20, padding: 10 }}>
             <Text style={{ fontFamily: "PoppinsRegular", fontSize: 20 }}>
               Total Allocation Vs. Budget
             </Text>
-            <Text style={styles.Mark}></Text>
+            <Text style={homeStyles.Mark}></Text>
           </View>
           <View style={{ marginTop: 30, padding: 10 }}>
             <Text style={{ fontFamily: "PoppinsRegular", fontSize: 20 }}>

@@ -1,27 +1,26 @@
+import Ionicons from "@expo/vector-icons/Ionicons";
+import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
+import MaterialIcons from "@expo/vector-icons/MaterialIcons";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { useNavigation } from "@react-navigation/native";
+import axios from "axios";
+import Checkbox from "expo-checkbox";
+import { router } from "expo-router";
+import { useState } from "react";
 import {
   ScrollView,
   Text,
   TextInput,
-  Dimensions,
   TouchableOpacity,
-  View,
+  View
 } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
-import styles from "../styles";
-import COLORS from "../../constants/Colors";
-import Ionicons from "@expo/vector-icons/Ionicons";
-import { useNavigation } from "@react-navigation/native";
-import { router } from "expo-router";
-import { useState } from "react";
-import axios from "axios";
-import MaterialIcons from "@expo/vector-icons/MaterialIcons";
-import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
-import Checkbox from "expo-checkbox";
-import Button from "../../components/Button";
-import AsyncStorage from "@react-native-async-storage/async-storage";
-import { Label } from "@react-navigation/elements";
+import { Calendar } from 'react-native-calendars';
 import DropDownPicker from "react-native-dropdown-picker";
-import { FlatList } from "react-native-web";
+import { SafeAreaView } from "react-native-safe-area-context";
+import Button from "../../components/Button";
+import COLORS from "../../constants/Colors";
+import homeStyles from "../style";
+
 
 const Account = () => {
   const [userFocus, setUserFocus] = useState(false);
@@ -35,7 +34,17 @@ const Account = () => {
 
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState(null);
-  const [showCalendar, setShowCalendar] = useState(false);
+  
+  
+    const [showCalendar, setShowCalendar] = useState(false);
+    const [selectedDate, setSelectedDate] = useState('');
+    
+    const handleDateSelect = (day)=> {
+      setSelectedDate(day.dateString);
+      setShowCalendar(false);
+    }
+   
+  
   const [items, setItems] = useState([
     { Label: "Salary", value: "salary" },
     { Label: "Freelancer", value: "freelance" },
@@ -79,7 +88,7 @@ const Account = () => {
 
   return (
     <SafeAreaView>
-      <ScrollView style={styles.container}>
+      <ScrollView style={homeStyles.container}>
         <View
           style={{
             marginVertical: 50,
@@ -109,9 +118,9 @@ const Account = () => {
           </Text>
         </View>
 
-        <View style={styles.loginbox1}>
+        <View style={homeStyles.loginbox1}>
           <View style={{ marginTop: 50, paddingHorizontal: 15 }}>
-            <Text style={styles.Text}>Income Source</Text>
+            <Text style={homeStyles.Text}>Income Source</Text>
 
             <View>
               <DropDownPicker
@@ -128,51 +137,23 @@ const Account = () => {
           </View>
 
           <View style={{ marginTop: 30, paddingHorizontal: 15 }}>
-            <Text style={styles.Text}>Date</Text>
+            <Text style={{fontFamily:'PoppinsRegular', fontSize:20, color:'#000000', paddingLeft:15}}>Date</Text>
 
-            <Calendar
-              onPress={(day) => {
-                setShowCalendar(day.dateString);
-                console.log("Selected date", day.dateString);
-              }}
-              markedDates={{
-                [selected]: {
-                  selected: true,
-                  marked: true,
-                  selectedColor: "teal",
-                },
-              }}
-            />
-
-            <View style={{ position: "relative" }}>
-              <TextInput
-                style={[
-                  styles.Input,
-                  {
-                    borderWidth: userFocus ? 1 : 0,
-                    borderColor: userFocus ? "#26A69A" : "transparent",
-                  },
-                ]}
-                placeholder="12/06/2025"
-                placeholderTextColor={"#D9D9D9"}
-                value={date}
-                onChangeText={setDate}
-                cursorColor={"#26A69A"}
-                onFocus={() => {
-                  setUserFocus(true);
-                }}
-                onBlur={() => {
-                  setUserFocus(false);
-                }}
-              />
-            </View>
+            
+            <TouchableOpacity
+            onPress={()=>setShowCalendar(!showCalendar)}>
+              <Text style={{color:COLORS.white, paddingLeft:15}}>{selectedDate || 'Select Date'}</Text>
+            </TouchableOpacity>
+            {showCalendar && (<Calendar
+              onDayPress={handleDateSelect} />
+            )}
           </View>
 
           <View style={{ marginTop: 30, paddingHorizontal: 15 }}>
             <View
               style={{ flexDirection: "row", justifyContent: "space-between" }}
             >
-              <Text style={styles.Text}>Enter Description</Text>
+              <Text style={homeStyles.Text}>Enter Description</Text>
               <Text
                 style={{
                   fontFamily: "InterBold",
@@ -187,7 +168,7 @@ const Account = () => {
             <View style={{ position: "relative" }}>
               <TextInput
                 style={[
-                  styles.Input,
+                  homeStyles.Input,
                   {
                     borderWidth: userFocus ? 1 : 0,
                     borderColor: userFocus ? "#26A69A" : "transparent",
@@ -209,12 +190,12 @@ const Account = () => {
           </View>
 
           <View style={{ marginTop: 30, paddingHorizontal: 15 }}>
-            <Text style={styles.Text}>Add to Wallet</Text>
+            <Text style={homeStyles.Text}>Add to Wallet</Text>
 
             <View style={{ position: "relative" }}>
               <TextInput
                 style={[
-                  styles.Input,
+                  homeStyles.Input,
                   {
                     borderWidth: userFocus ? 1 : 0,
                     borderColor: userFocus ? "#26A69A" : "transparent",
@@ -249,14 +230,14 @@ const Account = () => {
             <View
               style={{ flexDirection: "row", justifyContent: "space-between" }}
             >
-              <Text style={styles.Text}>Mark as recurring?</Text>
+              <Text style={homeStyles.Text}>Mark as recurring?</Text>
               <Checkbox value={isChecked} onValueChange={setChecked} />
             </View>
 
             <View style={{ position: "relative" }}>
               <TextInput
                 style={[
-                  styles.Mark,
+                  homeStyles.Mark,
                   {
                     borderWidth: userFocus ? 1 : 0,
                     borderColor: userFocus ? "#26A69A" : "transparent",
